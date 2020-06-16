@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AScroll</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./AScroll.js"></script>
+    <style>
+        #scrollBox {
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            overflow: hidden;
+        }
+
+        #box1 {
+            width: 100%;
+            min-width: 1300px;
+            min-height: 650px;
+            background: red;
+            overflow: hidden
+        }
+        #box2 {            
+            width: 100%;
+            min-width: 1450px;
+            min-height: 650px;
+            background: red;
+            overflow: hidden
+        }
+        .line {
+            height: 150px;
+            margin-bottom: 150px;
+            background: yellow;
+            overflow: hidden;
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body style="background: blue;">
+    <div id="scrollBox">
+        <div id="box1">
+            <div class="line">1231242123421h34k213j4oh21934oi21n34oi21oi34h9234ninj2i34nk23n42nji3n4k23nk4n234ihu23i4hoi23n42n3i4nk324njoi21hu34oih213oi4u2oi34n2kn34lk21n34 n21j34ni234oi2i3j4k2n34kn2134i2n34nm213kj4n2k34i2n3k4n21i34i21h34ih234io923492394h29342j342j34j23j4i2j34ij21934j92j34923492j394j2934923j492j394j2934j293j492j394j2394j293j492j349j2394j293j492j394j21394j9213j492j349j321492j1394j21934j923j492j13492j349j21394j21934j921j43921j43923j4921j394j21934j2193j49213</div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <span>123</span>
+    </div>
+    <script>
+        var scroll = new AScroll('#scrollBox',{barWidth:10,hotRefresh:true}); 
+        function click1() {
+            console.log('11111111')
+        }
+        function click2() {
+            console.log('22222222')
+            document.body.removeEventListener('click',click1,false)
+        }
+        // document.body.addEventListener('click',click1,false)
+        // document.body.addEventListener('click',click2,false)
+        /*IE、Opera注册事件*/
+        if (document.attachEvent) {
+            document.attachEvent('onmousewheel', click1);
+        }
+        //Firefox使用addEventListener添加滚轮事件  
+        if (document.addEventListener) { //firefox  
+            document.addEventListener('DOMMouseScroll', click1, false);
+        }
+        //Safari与Chrome属于同一类型
+        document.onmousewheel = click1;
+    </script>
+</body>
+
+</html>
